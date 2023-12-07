@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS "journal";
+
+CREATE TABLE IF NOT EXISTS "journal" ( 
+	"id" SERIAL PRIMARY KEY,
+	"name" VARCHAR(64) NOT NULL,
+	"created" DATE NOT NULL,
+	"done_data" DATE 
+);
+
+INSERT INTO "journal" ("name", "created") VALUES 
+	('Помыть пол', NOW()),
+	('Съездить за детьми', NOW());
+
+UPDATE "journal" SET "done_data" = NOW() WHERE id = 1;
+
+DELETE FROM "journal" WHERE "id" = 2; 
+
+-- SELECT * FROM journal;
+SELECT * FROM "journal" WHERE "created" < NOW() - INTERVAL '3 days';
